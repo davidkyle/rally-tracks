@@ -1,0 +1,35 @@
+
+{%- set p_vector_index_type = (vector_index_type | default("bbq_hnsw"))%}
+{
+  "name": "search-c1-s10",
+  "clients": 1,
+  "operation": {
+    "operation-type": "search",
+    "param-source": "knn-param-source",
+    "k": 10,
+    "num-candidates": 100,
+    {%- if p_vector_index_type == "bbq_hnsw" %}
+    "oversample-rescore": 3,
+    {%- endif %}
+    "looped": true
+  },
+  "warmup-time-period": 600,
+  "time-period": 1800
+},
+{
+  "name": "search-c1-s100",
+  "clients": 1,
+  "operation": {
+    "operation-type": "search",
+    "param-source": "knn-param-source",
+    "k": 100,
+    "num-candidates": 500,
+    {%- if p_vector_index_type == "bbq_hnsw" %}
+    "oversample-rescore": 3,
+    {%- endif %}
+    "looped": true
+  },
+  "warmup-time-period": 600,
+  "time-period": 1800
+}
+

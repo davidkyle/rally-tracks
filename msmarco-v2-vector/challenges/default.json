@@ -131,4 +131,28 @@
   "schedule": [
     {{ rally.collect(parts="common/ingest-search-autoscale-schedule.json") }}
   ]
+},
+{
+  "name": "just-search",
+  "description": "Benchmark search queries with configurable scaling steps",
+  "default": false,
+  "schedule": [
+    {{ rally.collect(parts="common/just-search-schedule.json") }}
+  ]
+},
+{
+  "name": "small-search",
+  "description": "Benchmark search queries on a small dataset",
+  "default": false,
+  "schedule": [
+    {{ rally.collect(parts="common/small-search-schedule.json") }}
+  ]
+},
+{
+  "name": "small-ingest",
+  "description": "Index a small dataset",
+  "default": false,
+  "schedule": [
+    {{ rally.collect(parts="common/small-ingest-schedule.json") }}
+  ]
 }
