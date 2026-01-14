@@ -4,32 +4,30 @@
   "name": "search-c1-s10",
   "clients": 1,
   "operation": {
+    {%- if p_vector_index_type == "bbq_hnsw" %}
+    "oversample-rescore": 3,
+    {%- endif %}    
     "operation-type": "search",
     "param-source": "knn-param-source",
     "k": 10,
-    "num-candidates": 100,
-    {%- if p_vector_index_type == "bbq_hnsw" %}
-    "oversample-rescore": 3,
-    {%- endif %}
-    "looped": true
+    "num-candidates": 100
   },
-  "warmup-time-period": 600,
-  "time-period": 1800
+  "warmup-iterations": 10,
+  "iterations": 10
 },
 {
   "name": "search-c1-s100",
   "clients": 1,
   "operation": {
+    {%- if p_vector_index_type == "bbq_hnsw" %}
+    "oversample-rescore": 3,
+    {%- endif %}    
     "operation-type": "search",
     "param-source": "knn-param-source",
     "k": 100,
-    "num-candidates": 500,
-    {%- if p_vector_index_type == "bbq_hnsw" %}
-    "oversample-rescore": 3,
-    {%- endif %}
-    "looped": true
+    "num-candidates": 500
   },
-  "warmup-time-period": 600,
-  "time-period": 1800
+  "warmup-iterations": 10,
+  "iterations": 10
 }
 
