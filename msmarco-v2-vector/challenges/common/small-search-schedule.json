@@ -1,12 +1,7 @@
-
-{%- set p_vector_index_type = (vector_index_type | default("bbq_hnsw"))%}
 {
   "name": "search-c1-s10",
   "clients": 1,
-  "operation": {
-    {%- if p_vector_index_type == "bbq_hnsw" %}
-    "oversample-rescore": 3,
-    {%- endif %}    
+  "operation": {   
     "operation-type": "search",
     "param-source": "knn-param-source",
     "k": 10,
@@ -18,10 +13,7 @@
 {
   "name": "search-c1-s100",
   "clients": 1,
-  "operation": {
-    {%- if p_vector_index_type == "bbq_hnsw" %}
-    "oversample-rescore": 3,
-    {%- endif %}    
+  "operation": {  
     "operation-type": "search",
     "param-source": "knn-param-source",
     "k": 100,
