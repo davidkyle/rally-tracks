@@ -7,8 +7,8 @@
     "k": 10,
     "num-candidates": 100
   },
-  "warmup-iterations": 10,
-  "iterations": 10
+  "warmup-iterations": 100,
+  "iterations": 100
 },
 {
   "name": "search-c1-s100",
@@ -19,7 +19,7 @@
     "k": 100,
     "num-candidates": 500
   },
-  "warmup-iterations": 10,
-  "iterations": 10
+  "warmup-iterations": 100,
+  "iterations": 100
 }
 
