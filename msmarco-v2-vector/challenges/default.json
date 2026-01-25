@@ -131,4 +131,12 @@
   "schedule": [
     {{ rally.collect(parts="common/ingest-search-autoscale-schedule.json") }}
   ]
+},
+{
+  "name": "simple-ingest-search",
+  "description": "Fewer queries, quicker",
+  "default": false,
+  "schedule": [
+    {{ rally.collect(parts="common/simple-ingest-search-schedule.json") }}
+  ]
 }

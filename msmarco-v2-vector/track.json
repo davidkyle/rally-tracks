@@ -351,6 +351,36 @@
       ]
     },
     {
+      "name": "msmarco-v2_float-12m",
+      "base-url": "{{_base_url}}",
+      "documents": [
+        {
+          "source-file": "cohere-documents-01.json.zst",
+          "document-count": 3000000,
+          "compressed-bytes": 28876793130,
+          "uncompressed-bytes": 69370756479
+        },
+        {
+          "source-file": "cohere-documents-02.json.zst",
+          "document-count": 3000000,
+          "compressed-bytes": 28874410235,
+          "uncompressed-bytes": 69372610608
+        },
+        {
+          "source-file": "cohere-documents-03.json.zst",
+          "document-count": 3000000,
+          "compressed-bytes": 28870107274,
+          "uncompressed-bytes": 69357935898
+        },
+        {
+          "source-file": "cohere-documents-04.json.zst",
+          "document-count": 3000000,
+          "compressed-bytes": 28819385209,
+          "uncompressed-bytes": 69387568508
+        }
+      ]
+    },
+    {
       "name": "msmarco-v2_base64-initial-indexing-1",
       "base-url": "{{_base_url}}",
       "documents": [
