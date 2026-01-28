@@ -715,7 +715,19 @@
           "uncompressed-bytes": 2133601661
         }
       ]
-    }
+    },
+    {
+      "name": "msmarco-v2_base64-3m",
+      "base-url": "{{_base_url}}",
+      "documents": [
+        {
+          "source-file": "cohere-documents-01_base64.json.zst",
+          "document-count": 3000000,
+          "compressed-bytes": 12374163247,
+          "uncompressed-bytes": 17578585938
+        }
+      ]
+    }      
   ],
   "operations": [
     {{ rally.collect(parts="operations/*.json") }}
