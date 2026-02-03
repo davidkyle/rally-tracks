@@ -162,3 +162,16 @@ When `as_search_target_throughputs` is a positive number, the search throughput 
 
 When `as_ingest_target_throughputs` is a positive number, the ingest throughput formula in documents per second is `ingest_bulk_size * as_ingest_target_throughputs`.
 When `as_search_target_throughputs` is a positive number, the search throughput formula in documents per second is `search_size * as_search_target_throughputs`.
+
+### Parameters for the ingest-search challenge
+
+- Mapping:
+    - `vector_index_type` (default: bbq_hnsw)
+- Initial indexing:
+    - `initial_ingest_clients` (default: 4)
+    - `initial_indexing_bulk_size` (default: 500)
+    - `initial_indexing_bulk_warmup` (default: 40) 
+    - `initial_indexing_ingest_doc_count` (default: unset): The absolute number of docs to ingest. Incompatible with `initial_indexing_ingest_percentage`  
+    - `post_ingest_sleep` (default: false): Whether to pause after ingest and prior to subsequent operations.
+    - `post_ingest_sleep_duration` (default: 600): Sleep duration in seconds. 
+    - `skip_initial_indexing` (default: false): Skip indexing and the post ingest sleep. If set `true` the data should have been pre-ingested

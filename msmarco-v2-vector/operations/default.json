@@ -24,6 +24,19 @@
   "ingest-percentage": {{initial_indexing_ingest_percentage | default(100)}}
 },
 {
+  "name": "initial-documents-indexing-with-doc-count",
+  "operation-type": "bulk",
+  {%- if initial_indexing_ingest_doc_count is defined %}
+  "ingest-doc-count": {{ initial_indexing_ingest_doc_count }},
+  {%- endif %}  
+  "corpora":  [
+    {% for doc_id in p_corpora %}
+       {{doc_id | tojson}}
+       {{ ", " if not loop.last else "" }}
+   {% endfor %}],
+  "bulk-size": {{initial_indexing_bulk_size | default(500)}}
+},
+{
   "name": "parallel-documents-indexing",
   "operation-type": "bulk",
   "corpora": {{parallel_corpora | default("msmarco-v2_float-parallel-indexing") | tojson }},

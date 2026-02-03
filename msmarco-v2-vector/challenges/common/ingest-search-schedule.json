@@ -1,0 +1,101 @@
+{# skip-initial-indexing-marker #}{%- if not skip_initial_indexing|default(false) -%}
+{
+    "operation": {
+    "operation-type": "delete-index"
+    }
+},
+{
+    "name": "create-index",
+    "operation": "create-index"
+},
+{
+    "name": "check-cluster-health",
+    "operation": "check-cluster-health"
+},
+{
+    "name": "initial-documents-indexing-with-doc-count",
+    "operation": "initial-documents-indexing-with-doc-count",
+    "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+    "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
+},
+{
+    "name": "refresh-after-index",
+    "operation": {
+        "operation-type": "refresh",
+        "request-timeout": 1000,
+        "include-in-reporting": true
+    }
+},
+{
+    "name": "wait-until-merges-finish-after-index",
+    "operation": {
+      "operation-type": "index-stats",
+      "index": "_all",
+      "condition": {
+        "path": "_all.total.merges.current",
+        "expected-value": 0
+      },
+      "retry-until-success": true,
+      "include-in-reporting": false
+    }
+},
+{# serverless-post-ingest-sleep-marker-start #}{%- if post_ingest_sleep|default(false) -%},
+{
+    "name": "post-ingest-sleep",
+    "operation": {
+    "operation-type": "sleep",
+    "duration": {{ post_ingest_sleep_duration|default(600) }}
+    }
+},
+{%- endif -%}{# serverless-post-ingest-sleep-marker-end #}
+{%- endif -%}{# skip-initial-indexing-marker #}
+{
+    "name": "standalone-search-knn-10-100-single-client",
+    "operation": {
+        "operation-type": "search",
+        "param-source": "knn-param-source",
+        "k": 10,
+        "num-candidates":100
+    },
+    "warmup-iterations": {{ standalone_search_iterations | default(1000) | int }},
+    "iterations": {{ standalone_search_iterations | default(1000) | int }},
+    "clients": 1  
+},
+{
+    "name": "standalone-search-knn-10-100-multiple-clients",
+    "operation": {
+        "operation-type": "search",
+        "param-source": "knn-param-source",
+        "k": 10,
+        "num-candidates":100
+    },
+    "warmup-iterations": {{ standalone_search_iterations | default(1000) | int }},
+    "iterations": {{ standalone_search_iterations | default(1000) | int }},
+    "clients": {{ standalone_search_clients | default(8) | int }}
+},
+{
+    "name": "standalone-search-knn-10-100-2-rescore-single-client",
+    "operation": {
+        "operation-type": "search",
+        "param-source": "knn-param-source",
+        "k": 10,
+        "num-candidates":100,
+        "oversample-rescore": 2
+    },
+    "warmup-iterations": {{ standalone_search_iterations | default(1000) | int }},
+    "iterations": {{ standalone_search_iterations | default(1000) | int }},
+    "clients": 1
+},
+{
+    "name": "standalone-search-knn-10-100-2-rescore-multiple-clients",
+    "operation": {
+        "operation-type": "search",
+        "param-source": "knn-param-source",
+        "k": 10,
+        "num-candidates":100,
+        "oversample-rescore": 2
+    },
+    "warmup-iterations": {{ standalone_search_iterations | default(1000) | int }},
+    "iterations": {{ standalone_search_iterations | default(1000) | int }},
+    "clients": {{ standalone_search_clients | default(8) | int }}
+}
